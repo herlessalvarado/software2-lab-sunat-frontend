@@ -11,7 +11,8 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { api } from "../../services/axios";
-import Cookies from "js-cookie";
+import useAuth from "../../state/Auth/useAuth";
+import { useNavigate } from "react-router-dom";
 
 function Copyright(props) {
   return (
@@ -34,6 +35,8 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function LogIn() {
+  const { login } = useAuth();
+  const navigate = useNavigate();
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
@@ -46,7 +49,8 @@ export default function LogIn() {
       const response = await api.post("/auth/login", userData);
 
       if (response.status === 200) {
-        Cookies.set("jwtToken", response.data.token, { expires: 7 });
+        login(response.data.token);
+        navigate("/");
       } else {
         console.error("Error en las credenciales");
       }

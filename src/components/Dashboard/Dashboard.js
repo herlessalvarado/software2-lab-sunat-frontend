@@ -9,10 +9,15 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { api } from "../../services/axios";
+import { useNavigate } from "react-router-dom";
+import useAuth from "../../state/Auth/useAuth";
 
 const defaultTheme = createTheme();
 
 export default function Album() {
+  const { logout } = useAuth();
+  const navigate = useNavigate();
+
   const getTaxes = async () => {
     try {
       const response = await api.get("/tax/get-taxes");
@@ -25,6 +30,11 @@ export default function Album() {
     } catch (error) {
       console.error("Error en la solicitud:", error);
     }
+  };
+
+  const handleLogout = async () => {
+    logout();
+    navigate("/login");
   };
 
   return (
@@ -55,7 +65,9 @@ export default function Album() {
               <Button variant="contained" onClick={getTaxes}>
                 Obtener impuestos
               </Button>
-              <Button variant="outlined">Cerrar sesión</Button>
+              <Button variant="outlined" onClick={handleLogout}>
+                Cerrar sesión
+              </Button>
             </Stack>
           </Container>
         </Box>
