@@ -47,11 +47,9 @@ export default function Register() {
         userData
       );
 
-      if (response.ok) {
-        // La solicitud fue exitosa, puedes redirigir o realizar otras acciones aquí.
+      if (response.data.ok) {
         console.log("Registro exitoso");
       } else {
-        // La solicitud falló, manejar el error aquí.
         console.error("Error en el registro");
       }
     } catch (error) {
