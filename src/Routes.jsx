@@ -5,7 +5,7 @@ import Register from "./components/Register/Register";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Cookies from "js-cookie";
 
-function App() {
+function AppRoutes() {
   const isAuthenticated = !!Cookies.get("jwtToken");
 
   return (
@@ -17,4 +17,4 @@ function App() {
   );
 }
 
-export default App;
+export default AppRoutes;
