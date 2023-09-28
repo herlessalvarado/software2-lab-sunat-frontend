@@ -17,6 +17,7 @@ const defaultTheme = createTheme();
 export default function Album() {
   const { logout } = useAuth();
   const navigate = useNavigate();
+  const [taxes, setTaxes] = React.useState([]);
 
   const getTaxes = async () => {
     try {
@@ -24,6 +25,7 @@ export default function Album() {
 
       if (response.status === 200) {
         console.log(response.data);
+        setTaxes(response.data);
       } else {
         console.error("Error en las credenciales");
       }
@@ -56,6 +58,15 @@ export default function Album() {
           }}
         >
           <Container maxWidth="sm">
+            <Typography
+              component="h1"
+              variant="h2"
+              align="center"
+              color="text.primary"
+              gutterBottom
+            >
+              Impuestos
+            </Typography>
             <Stack
               sx={{ pt: 4 }}
               direction="row"
@@ -70,6 +81,21 @@ export default function Album() {
               </Button>
             </Stack>
           </Container>
+          {taxes.length > 0 && (
+            <Container maxWidth="sm" sx={{ mt: 4 }}>
+              {taxes.map((tax) => (
+                <Typography
+                  variant="h5"
+                  align="center"
+                  color="text.secondary"
+                  paragraph
+                >
+                  Mes: {tax.month} <br /> Año: {tax.year} <br /> Impuesto: S/.{" "}
+                  {tax.value["$numberDecimal"]}
+                </Typography>
+              ))}
+            </Container>
+          )}
         </Box>
       </main>
     </ThemeProvider>
