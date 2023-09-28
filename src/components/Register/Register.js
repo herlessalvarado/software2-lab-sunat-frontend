@@ -11,6 +11,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { api } from "../../services/axios";
+import { useNavigate } from "react-router-dom";
 
 function Copyright(props) {
   return (
@@ -33,6 +34,7 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function Register() {
+  const navigate = useNavigate();
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
@@ -46,6 +48,7 @@ export default function Register() {
 
       if (response.data.ok) {
         console.log("Registro exitoso");
+        navigate("/login");
       } else {
         console.error("Error en el registro");
       }
