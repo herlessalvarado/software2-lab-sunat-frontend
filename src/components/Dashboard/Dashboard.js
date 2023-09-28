@@ -8,14 +8,14 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import axios from "axios";
+import { api } from "../../services/axios";
 
 const defaultTheme = createTheme();
 
 export default function Album() {
   const getTaxes = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/tax/get-taxes");
+      const response = await api.get("/tax/get-taxes");
 
       if (response.status === 200) {
         console.log(response.data);

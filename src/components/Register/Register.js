@@ -10,7 +10,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import axios from "axios";
+import { api } from "../../services/axios";
 
 function Copyright(props) {
   return (
@@ -42,10 +42,7 @@ export default function Register() {
     };
 
     try {
-      const response = await axios.post(
-        "http://localhost:3000/auth/signup",
-        userData
-      );
+      const response = await api.post("/auth/signup", userData);
 
       if (response.data.ok) {
         console.log("Registro exitoso");

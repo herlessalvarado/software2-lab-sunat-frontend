@@ -10,7 +10,7 @@ import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import axios from "axios";
+import { api } from "../../services/axios";
 import Cookies from "js-cookie";
 
 function Copyright(props) {
@@ -43,10 +43,7 @@ export default function LogIn() {
     };
 
     try {
-      const response = await axios.post(
-        "http://localhost:3000/auth/login",
-        userData
-      );
+      const response = await api.post("/auth/login", userData);
 
       if (response.status === 200) {
         Cookies.set("jwtToken", response.data.token, { expires: 7 });

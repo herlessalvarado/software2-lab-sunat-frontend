@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from "react";
 import AuthContext from "./AuthContext";
-import axios from "axios";
 import Cookies from "js-cookie";
-
-const api = axios.create({
-  baseURL: process.env.API_URL,
-});
+import { api } from "../../services/axios";
 
 const setupInterceptors = () => {
   api.interceptors.request.use(async (request) => {
