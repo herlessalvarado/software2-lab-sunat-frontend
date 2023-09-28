@@ -28,9 +28,21 @@ const AuthProvider = ({ children }) => {
     startup();
   }, []);
 
+  const login = (token) => {
+    Cookies.set("jwtToken", token, { expires: 7 });
+    setIsAuthenticated(true);
+  };
+
+  const logout = () => {
+    Cookies.remove("jwtToken");
+    setIsAuthenticated(false);
+  };
+
   const contextValue = {
     isStartedUp,
     isAuthenticated,
+    login,
+    logout,
   };
 
   return (
