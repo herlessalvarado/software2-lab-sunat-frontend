@@ -75,7 +75,7 @@ export default function Register() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Register
+            Registrar
           </Typography>
           <Box
             component="form"
@@ -112,12 +112,12 @@ export default function Register() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Register
+              Registrar
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
                 <Link href="/login" variant="body2">
-                  Already have an account? Sign in
+                  Ya tienes una cuenta? Inicia sesión
                 </Link>
               </Grid>
             </Grid>
